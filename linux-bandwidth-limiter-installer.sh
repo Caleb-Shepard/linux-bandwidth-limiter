@@ -245,3 +245,8 @@ echo
 echo "📖 README:"
 echo "https://github.com/Caleb-Shepard/linux-bandwidth-limiter/blob/main/README.md"
 echo
+echo
+echo "You can use the following command to remove restrictions:"
+echo "sudo systemctl stop bandwidth-limit.service"
+echo
+
