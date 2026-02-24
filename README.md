@@ -13,7 +13,6 @@ Easily limit bandwidth on your Linux machine with a persistent **systemd service
 - Lists all network interfaces and lets you choose which one to limit.
 - Set upload and download speeds in Mbit/s.
 - Persistent limits across reboots via a systemd service.
-- Simple one-line installer for Ubuntu/Debian.
 
 ---
 
