@@ -37,13 +37,67 @@ fi
 
 echo "Available network interfaces:"
 interfaces=($(ls /sys/class/net))
+
 for i in "${!interfaces[@]}"; do
     echo "$((i+1))) ${interfaces[$i]}"
 done
 
-read -rp "Enter the number of the interface to limit: " iface_index
+echo
+
+while true; do
+    read -rp "Enter the number of the interface to limit: " iface_index
+
+    # Check if input is a number
+    if ! [[ "$iface_index" =~ ^[0-9]+$ ]]; then
+        echo "Please enter a valid number."
+        continue
+    fi
+
+    # Check range
+    if (( iface_index < 1 || iface_index > ${#interfaces[@]} )); then
+        echo "Selection out of range."
+        continue
+    fi
+
+    break
+done
+
 SELECTED_INTERFACE="${interfaces[$((iface_index-1))]}"
 echo "Selected interface: $SELECTED_INTERFACE"
+echo
+
+# ==============================
+# Ask User for Bandwidth Limits
+# ==============================
+
+echo "Enter bandwidth limits in Mbps (press Enter to use defaults)."
+echo
+
+while true; do
+    read -rp "Download limit [${DEFAULT_DOWNLOAD} Mbps]: " USER_DOWNLOAD
+    USER_DOWNLOAD="${USER_DOWNLOAD:-$DEFAULT_DOWNLOAD}"
+
+    if [[ "$USER_DOWNLOAD" =~ ^[0-9]+$ ]] && (( USER_DOWNLOAD > 0 )); then
+        break
+    else
+        echo "Please enter a valid positive number."
+    fi
+done
+
+while true; do
+    read -rp "Upload limit [${DEFAULT_UPLOAD} Mbps]: " USER_UPLOAD
+    USER_UPLOAD="${USER_UPLOAD:-$DEFAULT_UPLOAD}"
+
+    if [[ "$USER_UPLOAD" =~ ^[0-9]+$ ]] && (( USER_UPLOAD > 0 )); then
+        break
+    else
+        echo "Please enter a valid positive number."
+    fi
+done
+
+echo
+echo "Download limit set to: ${USER_DOWNLOAD} Mbps"
+echo "Upload limit set to:   ${USER_UPLOAD} Mbps"
 echo
 
 # ==============================
@@ -52,8 +106,8 @@ echo
 
 cat > "$CONFIG_PATH" << EOF
 INTERFACE="$SELECTED_INTERFACE"
-DOWNLOAD_MBIT="$DEFAULT_DOWNLOAD"
-UPLOAD_MBIT="$DEFAULT_UPLOAD"
+DOWNLOAD_MBIT="$USER_DOWNLOAD"
+UPLOAD_MBIT="$USER_UPLOAD"
 EOF
 
 echo "Config written to $CONFIG_PATH"
@@ -186,3 +240,8 @@ fi
 echo
 echo "Installation complete."
 systemctl status "$SERVICE_NAME" --no-pager
+
+echo
+echo "📖 README:"
+echo "https://github.com/Caleb-Shepard/linux-bandwidth-limiter/blob/main/README.md"
+echo
