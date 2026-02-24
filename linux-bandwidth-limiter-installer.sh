@@ -42,10 +42,21 @@ for i in "${!interfaces[@]}"; do
 done
 
 read -rp "Enter the number of the interface to limit: " iface_index
-INTERFACE="${interfaces[$((iface_index-1))]}"
-
-echo "Selected interface: $INTERFACE"
+SELECTED_INTERFACE="${interfaces[$((iface_index-1))]}"
+echo "Selected interface: $SELECTED_INTERFACE"
 echo
+
+# ==============================
+# Write Config File
+# ==============================
+
+cat > "$CONFIG_PATH" << EOF
+INTERFACE="$SELECTED_INTERFACE"
+DOWNLOAD_MBIT="$DEFAULT_DOWNLOAD"
+UPLOAD_MBIT="$DEFAULT_UPLOAD"
+EOF
+
+echo "Config written to $CONFIG_PATH"
 
 # ==============================
 # Install Main Script
@@ -130,21 +141,6 @@ esac
 EOF
 
 echo "Installed main script."
-
-# ==============================
-# Install Config (only if missing)
-# ==============================
-
-if [[ ! -f "$CONFIG_PATH" ]]; then
-    cat > "$CONFIG_PATH" << EOF
-INTERFACE="$INTERFACE"
-DOWNLOAD_MBIT="$DEFAULT_DOWNLOAD"
-UPLOAD_MBIT="$DEFAULT_UPLOAD"
-EOF
-    echo "Created new config file."
-else
-    echo "Config exists — preserving existing settings."
-fi
 
 # ==============================
 # Install Service
