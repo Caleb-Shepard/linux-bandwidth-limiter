@@ -4,7 +4,7 @@
 ![Platform](https://img.shields.io/badge/platform-Linux-lightgrey)
 ![Status](https://img.shields.io/badge/status-stable-green)
 
-Easily limit bandwidth on your Linux machine with a persistent **systemd service**. Supports both upload and download throttling using `tc` (Traffic Control).
+Easily limit bandwidth on your Linux machine with a persistent **systemd service**. Supports both upload and download throttling using `tc` (Traffic Control). Created after a horrible incident where one failed download in a new client that will not be named retried itself silently dozens of times, racking up a painful bill.
 
 ---
 
