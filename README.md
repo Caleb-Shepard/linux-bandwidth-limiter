@@ -1,4 +1,3 @@
-n
 # Linux Bandwidth Limiter
 
 ![License](https://img.shields.io/badge/license-GPLv3-blue)
