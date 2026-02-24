@@ -27,7 +27,7 @@ sudo apt update && sudo apt install -y tc curl
 - tc – Traffic control utility for bandwidth management
 - curl – Fetches the installer script
 
-⚡ One-liner Install & Run
+## ⚡ One-liner Install & Run
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/Caleb-Shepard/linux-bandwidth-limiter/main/linux-bandwidth-limiter-installer.sh | sudo bash
