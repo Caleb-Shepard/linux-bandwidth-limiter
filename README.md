@@ -25,9 +25,9 @@ Install the required dependencies:
 ```bash
 sudo apt update && sudo apt install -y tc curl
 ```
-    tc – Traffic control utility for bandwidth management
 
-    curl – Fetches the installer script
+- tc – Traffic control utility for bandwidth management
+- curl – Fetches the installer script
 
 ⚡ One-liner Install & Run
 
@@ -37,13 +37,10 @@ curl -sSL https://raw.githubusercontent.com/Caleb-Shepard/linux-bandwidth-limite
 
 Workflow:
 
-    The script lists all network interfaces.
-
-    You select an interface by number.
-
-    Default download/upload limits are applied (you can edit the config later).
-
-    A systemd service is installed to persist limits across reboots.
+- The script lists all network interfaces.
+- You select an interface by number.
+- Default download/upload limits are applied (you can edit the config later).
+- A systemd service is installed to persist limits across reboots.
 
 🖥 Example Usage
 
