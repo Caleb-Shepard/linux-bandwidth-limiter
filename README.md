@@ -50,51 +50,62 @@ Available network interfaces:
 2) wlan0
 3) lo
 
+```
 Enter the number of the interface to limit: 2
+
 Selected interface: wlan0
+
 Installation complete. Service started.
+```
 
 ⚙️ Config & Customization
 
 The configuration file is stored at:
 
-Plain text
-/etc/default/bandwidth-limit
+`/etc/default/bandwidth-limit`
 
 Example config:
 
-Bash
+```bash
 INTERFACE="wlan0"
 DOWNLOAD_MBIT="10"
 UPLOAD_MBIT="2"
+```
 
 You can edit this file to change limits or the interface, then restart the service:
 
-Bash
+```bash
 sudo systemctl restart bandwidth-limit.service
+```
 
-🛠 Control Cheat Sheet
-Command	Action
-sudo systemctl start bandwidth-limit.service	Apply limits
-sudo systemctl stop bandwidth-limit.service	Remove limits
-sudo systemctl restart bandwidth-limit.service	Apply new limits
-sudo systemctl status bandwidth-limit.service	View status
-🔄 Reset or Remove Limits
+## 🛠 Control Cheat Sheet
+
+| Command                                           | Action                        |
+|--------------------------------------------------|-------------------------------|
+| `sudo systemctl start bandwidth-limit.service`  | Apply limits                  |
+| `sudo systemctl stop bandwidth-limit.service`   | Remove limits                 |
+| `sudo systemctl restart bandwidth-limit.service`| Apply new limits              |
+| `sudo systemctl status bandwidth-limit.service` | View service status           |
+
+---
+
+## 🔄 Reset or Remove Limits
 
 To remove all bandwidth restrictions without uninstalling:
 
-Bash
+```bash
 sudo systemctl stop bandwidth-limit.service
+```
 
 📂 Advanced
 
-    Supports multiple traffic shaping modules: htb, fq_codel, and ifb.
-
-    Can be extended to apply per-IP or per-port limits.
+- Supports multiple traffic shaping modules: htb, fq_codel, and ifb.
+- Can be extended to apply per-IP or per-port limits.
 
 📜 License
 
 GPLv3 License – see LICENSE
+
 🏷️ Summary
 
 This project provides a reliable, persistent bandwidth limiter for Linux systems. Perfect for servers, workstations, or testing environments where network throttling is required.
