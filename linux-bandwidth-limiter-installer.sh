@@ -45,8 +45,8 @@ done
 echo
 
 while true; do
-    read -rp "Enter the number of the interface to limit: " iface_index
-
+    read -rp "Enter the number of the interface to limit: " iface_index < /dev/tty
+    
     # Check if input is a number
     if ! [[ "$iface_index" =~ ^[0-9]+$ ]]; then
         echo "Please enter a valid number."
