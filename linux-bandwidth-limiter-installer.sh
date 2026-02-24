@@ -74,7 +74,7 @@ echo "Enter bandwidth limits in Mbps (press Enter to use defaults)."
 echo
 
 while true; do
-    read -rp "Download limit [${DEFAULT_DOWNLOAD} Mbps]: " USER_DOWNLOAD
+    read -rp "Download limit [${DEFAULT_DOWNLOAD} Mbps]: " USER_DOWNLOAD < /dev/tty
     USER_DOWNLOAD="${USER_DOWNLOAD:-$DEFAULT_DOWNLOAD}"
 
     if [[ "$USER_DOWNLOAD" =~ ^[0-9]+$ ]] && (( USER_DOWNLOAD > 0 )); then
@@ -85,7 +85,7 @@ while true; do
 done
 
 while true; do
-    read -rp "Upload limit [${DEFAULT_UPLOAD} Mbps]: " USER_UPLOAD
+    read -rp "Upload limit [${DEFAULT_UPLOAD} Mbps]: " USER_UPLOAD < /dev/tty
     USER_UPLOAD="${USER_UPLOAD:-$DEFAULT_UPLOAD}"
 
     if [[ "$USER_UPLOAD" =~ ^[0-9]+$ ]] && (( USER_UPLOAD > 0 )); then
