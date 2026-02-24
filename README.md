@@ -33,7 +33,7 @@ sudo apt update && sudo apt install -y tc curl
 ## ⚡ One-liner Install & Run
 
 ```bash
-curl -sSL https://github.com/Caleb-Shepard/linux-bandwidth-limiter/linux-bandwidth-limiter-installer.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/Caleb-Shepard/linux-bandwidth-limiter/main/linux-bandwidth-limiter-installer.sh | sudo bash
 ```
 
 **Workflow:**
